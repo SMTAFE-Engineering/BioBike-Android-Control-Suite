@@ -20,37 +20,38 @@
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true" >
+            android:layout_alignParentTop="true" android:background="#222222" android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TableRow
                 android:id="@+id/tableRow1"
-                android:layout_height="wrap_content" >
-
-                <ToggleButton
-                    android:id="@+id/toggleButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ToggleButton" />
-
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="25dp"
-                    android:text="Main Power"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content" android:layout_gravity="top">
 
                 <Button
                     android:id="@+id/button1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Calibrate" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calibrate the controller"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
             </TableRow>
 
@@ -65,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
             </TableRow>
+
         </TableLayout>
 
         <TableLayout
@@ -82,30 +84,41 @@
                 android:layout_height="wrap_content" >
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btn_hba_down"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+" />
+                    android:text="-" android:onClick="downClick_hba"/>
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btn_hba_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-" />
+                    android:text="+" android:onClick="upClick_hba"/>
 
                 <SeekBar
-                    android:id="@+id/seekBar1"
+                    android:id="@+id/skb_hba"
                     android:layout_width="500dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" android:max="100"/>
 
                 <EditText
-                    android:id="@+id/editText1"
+                    android:id="@+id/txt_hba_pos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="number" >
+                    android:digits="3"
+                    android:focusable="false"
+                    android:inputType="number"
+                    android:minWidth="70dp"
+                    android:text="100" >
 
                     <requestFocus />
                 </EditText>
+
+                <ToggleButton
+                    android:id="@+id/tog_hba_enable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="ToggleButton" />
 
             </TableRow>
 
@@ -113,18 +126,123 @@
                 android:id="@+id/tableRow6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/btn_hbl_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-" android:onClick="downClick_hbl"/>
+
+                <Button
+                    android:id="@+id/btn_hbl_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+" android:onClick="upClick_hbl"/>
+
+                <SeekBar
+                    android:id="@+id/skb_hbl"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/txt_hbl_pos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:digits="3"
+                    android:focusable="false"
+                    android:inputType="number"
+                    android:minWidth="70dp"
+                    android:text="100" />
+
+                <ToggleButton
+                    android:id="@+id/tog_hbl_enable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="ToggleButton" />
+
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/btn_spa_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-" android:onClick="downClick_spa"/>
+
+                <Button
+                    android:id="@+id/btn_spa_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+" android:onClick="upClick_spa"/>
+
+                <SeekBar
+                    android:id="@+id/skb_spa"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/txt_spa_pos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:digits="3"
+                    android:focusable="false"
+                    android:inputType="number"
+                    android:minWidth="70dp"
+                    android:text="100" />
+
+                <ToggleButton
+                    android:id="@+id/tog_spa_enable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="ToggleButton" />
+
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/btn_spl_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-" android:onClick="downClick_spl"/>
+
+                <Button
+                    android:id="@+id/btn_spl_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+" android:onClick="upClick_spl"/>
+
+                <SeekBar
+                    android:id="@+id/skb_spl"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/txt_spl_pos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:digits="3"
+                    android:focusable="false"
+                    android:inputType="number"
+                    android:minWidth="70dp"
+                    android:text="100" />
+
+                <ToggleButton
+                    android:id="@+id/tog_spl_enable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="ToggleButton" />
+
             </TableRow>
         </TableLayout>
 
