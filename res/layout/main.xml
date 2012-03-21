@@ -85,20 +85,20 @@
 
                 <Button
                     android:id="@+id/btn_hba_down"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:text="-" android:onClick="downClick_hba"/>
 
                 <Button
                     android:id="@+id/btn_hba_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:text="+" android:onClick="upClick_hba"/>
 
                 <SeekBar
                     android:id="@+id/skb_hba"
                     android:layout_width="500dp"
-                    android:layout_height="wrap_content" android:max="100"/>
+                    android:max="100" android:layout_height="wrap_content" android:layout_gravity="center_vertical"/>
 
                 <EditText
                     android:id="@+id/txt_hba_pos"
@@ -129,20 +129,20 @@
 
                 <Button
                     android:id="@+id/btn_hbl_down"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:text="-" android:onClick="downClick_hbl"/>
 
                 <Button
                     android:id="@+id/btn_hbl_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:text="+" android:onClick="upClick_hbl"/>
 
                 <SeekBar
                     android:id="@+id/skb_hbl"
                     android:layout_width="500dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" android:layout_gravity="center_vertical"/>
 
                 <EditText
                     android:id="@+id/txt_hbl_pos"
@@ -170,20 +170,20 @@
 
                 <Button
                     android:id="@+id/btn_spa_down"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:text="-" android:onClick="downClick_spa"/>
 
                 <Button
                     android:id="@+id/btn_spa_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:text="+" android:onClick="upClick_spa"/>
 
                 <SeekBar
                     android:id="@+id/skb_spa"
                     android:layout_width="500dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" android:layout_gravity="center_vertical"/>
 
                 <EditText
                     android:id="@+id/txt_spa_pos"
@@ -211,20 +211,20 @@
 
                 <Button
                     android:id="@+id/btn_spl_down"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:text="-" android:onClick="downClick_spl"/>
 
                 <Button
                     android:id="@+id/btn_spl_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:text="+" android:onClick="upClick_spl"/>
 
                 <SeekBar
                     android:id="@+id/skb_spl"
                     android:layout_width="500dp"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" android:layout_gravity="center_vertical"/>
 
                 <EditText
                     android:id="@+id/txt_spl_pos"
