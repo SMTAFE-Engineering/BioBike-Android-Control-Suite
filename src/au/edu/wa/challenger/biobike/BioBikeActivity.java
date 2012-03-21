@@ -1,3 +1,24 @@
+/*
+ 	This file is part of the BioBike Control App.
+ 
+    The BioBike Control App is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    The BioBike Control App is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the BioBike Control App.  If not, see <http://www.gnu.org/licenses/>.
+    
+    Copyright 2012 Challenger Institute of Technology (http://www.challenger.wa.edu.au)
+    
+    Developed by Daniel Harmsworth (atrophy@caffeinator.net)
+ */
+
 package au.edu.wa.challenger.biobike;
 
 import android.app.Activity;
@@ -42,7 +63,6 @@ public class BioBikeActivity extends Activity {
         setContentView(R.layout.main);
         
         //This is where the ADK stuff should retrieve the current actuator positions.
-        
         
         hba_loc_txt = (EditText) findViewById(R.id.txt_hba_pos);
         hba_loc_skb = (SeekBar) findViewById(R.id.skb_hba);
@@ -111,37 +131,45 @@ public class BioBikeActivity extends Activity {
     
     private void set_hba(int pos)
     {
-    	hba_loc = pos;
-    	hba_loc_txt.setText(Integer.toString(hba_loc));
-    	hba_loc_skb.setProgress(hba_loc);
-    	
+    	if ((pos <= 100) && (pos >= 0))
+    	{
+    		hba_loc = pos;
+    		hba_loc_txt.setText(Integer.toString(hba_loc));
+    		hba_loc_skb.setProgress(hba_loc);
+    	}
     	//ADK call to set the HBA actuator position goes here.
     }
     
     private void set_hbl(int pos)
     {
-    	hbl_loc = pos;
-    	hbl_loc_txt.setText(Integer.toString(hbl_loc));
-    	hbl_loc_skb.setProgress(hbl_loc);
-    	
+    	if ((pos <= 100) && (pos >= 0))
+    	{
+    		hbl_loc = pos;
+    		hbl_loc_txt.setText(Integer.toString(hbl_loc));
+    		hbl_loc_skb.setProgress(hbl_loc);
+    	}
     	//ADK call to set the HBL actuator position goes here.
     }
     
     private void set_spa(int pos)
     {
-    	spa_loc = pos;
-    	spa_loc_txt.setText(Integer.toString(spa_loc));
-    	spa_loc_skb.setProgress(spa_loc);
-    	
+    	if ((pos <= 100) && (pos >= 0))
+    	{
+    		spa_loc = pos;
+    		spa_loc_txt.setText(Integer.toString(spa_loc));
+    		spa_loc_skb.setProgress(spa_loc);
+    	}
     	//ADK call to set the SPA actuator position goes here.
     }
     
     private void set_spl(int pos)
     {
-    	spl_loc = pos;
-    	spl_loc_txt.setText(Integer.toString(spl_loc));
-    	spl_loc_skb.setProgress(spl_loc);
-    	
+    	if ((pos <= 100) && (pos >= 0))
+    	{
+    		spl_loc = pos;
+    		spl_loc_txt.setText(Integer.toString(spl_loc));
+    		spl_loc_skb.setProgress(spl_loc);
+    	} 
     	//ADK call to set the SPL actuator position goes here.
     }
 
