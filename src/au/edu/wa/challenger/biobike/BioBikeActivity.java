@@ -42,6 +42,8 @@ public class BioBikeActivity extends Activity {
         setContentView(R.layout.main);
         
         //This is where the ADK stuff should retrieve the current actuator positions.
+        
+        
         hba_loc_txt = (EditText) findViewById(R.id.txt_hba_pos);
         hba_loc_skb = (SeekBar) findViewById(R.id.skb_hba);
     	hba_loc_ena = (ToggleButton) findViewById(R.id.tog_hba_enable);
