@@ -21,14 +21,28 @@
 
 package au.edu.wa.challenger.biobike;
 
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.util.Log;
 import android.view.View;
+
+import com.android.future.usb.UsbAccessory;
+import com.android.future.usb.UsbManager;
 
 import android.widget.*;
 
 public class BioBikeActivity extends Activity {
-	public int hba_loc;
+	int hba_loc;
 	Button			hba_btn_up;
 	Button			hba_btn_down;
 	EditText 		hba_loc_txt;
@@ -55,6 +69,78 @@ public class BioBikeActivity extends Activity {
 	EditText 		spl_loc_txt;
 	SeekBar			spl_loc_skb;
 	ToggleButton	spl_loc_ena;
+	
+	/* ADK code based on the tutorial at:
+     * http://allaboutee.com/2011/12/31/arduino-adk-board-blink-an-led-with-your-phone-code-and-explanation/
+     */
+    
+    //Tag the ADK stuff for LogCat
+    private static final String TAG = "BioBike";
+    //Get the USB permission
+    private static final String ACTION_USB_PERMISSION = "com.google.android.DemoKit.action.USB_PERMISSION";
+    
+    //ADK objects
+    private UsbManager mUsbManager;
+    private PendingIntent mPermissionIntent;
+    private boolean mPermissionRequestPending;
+    private ToggleButton buttonLED;
+     
+    UsbAccessory mAccessory;
+    ParcelFileDescriptor mFileDescriptor;
+    FileInputStream mInputStream;
+    FileOutputStream mOutputStream;
+    
+    // Set up the ADK communications
+    private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (ACTION_USB_PERMISSION.equals(action)) {
+				synchronized (this) {
+					UsbAccessory accessory = UsbManager.getAccessory(intent);
+					if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
+						openAccessory(accessory);
+					} else {
+						Log.d(TAG, "permission denied for accessory " + accessory);
+					}
+					mPermissionRequestPending = false;
+				}
+			} else if (UsbManager.ACTION_USB_ACCESSORY_DETACHED.equals(action)) {
+				UsbAccessory accessory = UsbManager.getAccessory(intent);
+				if (accessory != null && accessory.equals(mAccessory)) {
+					closeAccessory();
+				}
+			}
+		}
+    	
+		private void openAccessory(UsbAccessory accessory) {
+			mFileDescriptor = mUsbManager.openAccessory(accessory);
+			if (mFileDescriptor != null) {
+				mAccessory = accessory;
+				FileDescriptor fd = mFileDescriptor.getFileDescriptor();
+				mInputStream = new FileInputStream(fd);
+				mOutputStream = new FileOutputStream(fd);
+				Log.d(TAG, "accessory opened");
+			} else {
+				Log.d(TAG, "accessory open fail");
+			}
+		}
+		
+		private void closeAccessory() {
+			try {
+				if (mFileDescriptor != null) {
+					mFileDescriptor.close();
+				}
+			} catch (IOException e) {
+				/* Nothing to see here... */
+			} finally {
+				mFileDescriptor = null;
+				mAccessory = null;
+			}
+		}
+
+		
+    };
 	
     /** Called when the activity is first created. */
     @Override
